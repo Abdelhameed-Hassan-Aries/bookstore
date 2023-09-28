@@ -1,37 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import stores from "../../data/stores.json";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { Box } from "@mui/material";
 
-const StoreList = ({}) => {
+const StoreList = () => {
+  const [currentStores, setCurrentStores] = useState(stores);
+
+  const handleDelete = (id) => {
+    setCurrentStores((prevStores) =>
+      prevStores.filter((store) => store.id !== id)
+    );
+  };
+
+  const handleEditCommit = (params) => {
+    setCurrentStores((prevStores) =>
+      prevStores.map((store) =>
+        store.id === params.id ? { ...store, name: params.value } : store
+      )
+    );
+  };
+
   const columns: GridColDef[] = [
     { field: "id", headerName: "Store ID", width: 130 },
     {
       field: "name",
       headerName: "Name",
       width: 300,
-      valueGetter: (params: GridValueGetterParams) => `${params.row.name}`,
+      editable: true,
     },
     {
       field: "address",
       headerName: "Address",
       width: 300,
-      valueGetter: (params: GridValueGetterParams) => `${params.row.address}`,
+      valueGetter: (params) => `${params.row.address}`,
     },
     {
       field: "actions",
       headerName: "Actions",
       width: 180,
       sortable: false,
-      renderCell: () => (
+      renderCell: (params) => (
         <React.Fragment>
-          <IconButton color="primary" size="small">
+          <IconButton
+            color="primary"
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <EditIcon />
           </IconButton>
-          <IconButton color="error" size="small">
+          <IconButton
+            color="error"
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(params.row.id);
+            }}
+          >
             <DeleteIcon />
           </IconButton>
         </React.Fragment>
@@ -39,12 +68,12 @@ const StoreList = ({}) => {
     },
   ];
 
-  const rows = stores.map((store) => ({
-    id: `#${store.id}`,
+  const rows = currentStores.map((store) => ({
+    id: store.id,
     name: store.name,
     address: `${store.address_1 ?? ""} ${store.city}, ${store.state} ${
       store.zip
-    } `,
+    }`,
   }));
 
   return (
@@ -55,6 +84,7 @@ const StoreList = ({}) => {
         pageSizeOptions={[5, 10]}
         checkboxSelection
         className="whiteBackground"
+        onCellEditStart={handleEditCommit}
       />
     </Box>
   );

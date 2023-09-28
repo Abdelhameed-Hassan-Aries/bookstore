@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import { Button, Stack } from "@mui/material";
 import Image from "next/image";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useState } from "react";
 
 const BookCard = ({ data, isShopPage = false }) => {
   const {
@@ -15,6 +16,9 @@ const BookCard = ({ data, isShopPage = false }) => {
     storeName2,
     storeCost2,
   } = data;
+
+  const [isStore1Sold, setIsStore1Sold] = useState(false);
+  const [isStore2Sold, setIsStore2Sold] = useState(false);
 
   return (
     <Card
@@ -132,8 +136,9 @@ const BookCard = ({ data, isShopPage = false }) => {
                         backgroundColor: "#2374BF",
                       },
                     }}
+                    onClick={() => setIsStore1Sold(true)}
                   >
-                    Sell
+                    {isStore1Sold ? "Sold" : "Sell"}
                   </Button>
                 </Stack>
 
@@ -177,8 +182,9 @@ const BookCard = ({ data, isShopPage = false }) => {
                         backgroundColor: "#2374BF",
                       },
                     }}
+                    onClick={() => setIsStore2Sold(true)}
                   >
-                    Sell
+                    {isStore2Sold ? "Sold" : "Sell"}
                   </Button>
                 </Stack>
               </Stack>
