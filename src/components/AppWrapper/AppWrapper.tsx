@@ -1,30 +1,39 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { useState } from "react";
-import SideBar from "./SideBar";
+import SideBar, { drawerWidth } from "./SideBar";
 import AppBarComponent from "./Appbar";
+import { Stack } from "@mui/material";
 
 const WithAppWrapper = (Children) => {
   return function WithAppWrapperComponent(props) {
     return (
-      <Box sx={{ display: "flex" }}>
-        <AppBarComponent />
+      <Stack direction="row">
         <SideBar />
-        <Box
-          component="main"
+        <Stack
           sx={{
             backgroundColor: "primary.contrastText",
             flexGrow: 1,
             height: "100vh",
-            overflow: "auto",
             pt: 8,
           }}
         >
-          <Box p={3}>
+          <AppBarComponent />
+
+          <Box
+            component="main"
+            sx={{
+              backgroundColor: "primary.contrastText",
+              pt: 6,
+              paddingLeft: `${drawerWidth + 32}px`,
+              paddingRight: 4,
+              overflowY: "auto",
+            }}
+          >
             <Children {...props} />
           </Box>
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     );
   };
 };

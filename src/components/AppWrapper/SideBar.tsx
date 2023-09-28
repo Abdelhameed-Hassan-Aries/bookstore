@@ -3,45 +3,27 @@ import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import HomeIcon from "@mui/icons-material/Home";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Stack } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { Stack, Typography } from "@mui/material";
+import Image from "next/image";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-const drawerWidth = 264;
+export const drawerWidth = 248;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})(({ theme }) => ({
   "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
     boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
+    height: "100vh",
+    zIndex: theme.zIndex.drawer,
   },
-  marginTop: 64,
 }));
 
 const SideBar = () => {
@@ -57,119 +39,154 @@ const SideBar = () => {
     push(`/${route}`);
   };
 
+  const isShopRoute = selectedPage === "shop";
+  const isStoreRoute = selectedPage === "stores";
+  const isAuthorRoute = selectedPage === "author";
+  const isBooksRoute = selectedPage === "books";
+
   return (
     <Drawer variant="permanent" open>
-      <Stack justifyContent="space-between" height="100%" overflow="hidden">
-        <List component="nav">
-          <ListItemButton
-            selected={selectedPage === "homepage"}
-            onClick={() => handleSelectPage("homepage")}
-          >
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Homepage" />
-          </ListItemButton>
-
-          <ListItemButton
-            selected={selectedPage === "dashboard"}
-            onClick={() => handleSelectPage("dashboard")}
-          >
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItemButton>
-
-          <ListItemButton
-            selected={selectedPage === "billing"}
-            onClick={() => handleSelectPage("billing")}
-          >
-            <ListItemIcon>
-              <AttachMoneyIcon />
-            </ListItemIcon>
-            <ListItemText primary="Billing" />
-          </ListItemButton>
-        </List>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            cursor: "pointer",
-          }}
-        >
-          <Box>
-            {/* {isMenuOpen && (
-              <Box>
-                <Box>
-                  <Divider />
-                </Box>
-
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  padding="12px 16px"
-                  spacing={4}
-                >
-                  <LogoutIcon
-                    sx={{ width: "24px", height: "24px", color: "error.main" }}
-                  />
-
-                  <Box>
-                    <Typography color="error.main" marginX={1}>
-                      Sign Out
-                    </Typography>
-                  </Box>
-                </Stack>
-              </Box>
-            )} */}
-
-            <Box>
-              <Divider />
-            </Box>
-
-            {/* <Stack
-              onClick={handleMenuState}
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              padding="8px 16px"
-            >
-              <Stack direction="row" alignItems="center" spacing={3}>
-                <Avatar
-                  alt="user-avatar"
-                  src={thumbnail}
-                  sx={{ width: 32, height: 32 }}
-                />
-
-                <Box maxWidth="150px">
-                  {data ? (
-                    <Typography
-                      color="primary.main"
-                      marginX={1}
-                      textTransform="capitalize"
-                      overflow="hidden"
-                      textOverflow="ellipsis"
-                    >
-                      {username}
-                    </Typography>
-                  ) : (
-                    <Skeleton variant="text" width={150} height={40} />
-                  )}
-                </Box>
-              </Stack>
-
-              <Box>
-                <ExpandMoreIcon
-                  sx={{
-                    transform: isMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
-              </Box>
-            </Stack> */}
+      <Stack
+        justifyContent="space-between"
+        height="100%"
+        overflow="hidden"
+        pt={6}
+        pb={4}
+      >
+        <Stack spacing={6}>
+          <Box px={4}>
+            <Image
+              src="/images/bookworld-whole.svg"
+              alt="bookstore-img"
+              width={180}
+              height={45}
+            />
           </Box>
-        </Box>
+
+          <List component="nav">
+            <ListItemButton
+              selected={selectedPage === "shop"}
+              onClick={() => handleSelectPage("shop")}
+              sx={{ px: 4 }}
+            >
+              <ListItemIcon sx={{ pr: 2, minWidth: "fit-content" }}>
+                <Image
+                  src={`/images/${
+                    isShopRoute ? "shop-icon-active.svg" : "shop-icon.svg"
+                  }`}
+                  alt="shop-img"
+                  width={24}
+                  height={24}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary="Shop"
+                sx={{
+                  color: isShopRoute ? "primary.main" : "black",
+                  opacity: isShopRoute ? 1 : 0.25,
+                }}
+              />
+            </ListItemButton>
+
+            <ListItemButton
+              selected={selectedPage === "stores"}
+              onClick={() => handleSelectPage("stores")}
+              sx={{ px: 4 }}
+            >
+              <ListItemIcon sx={{ pr: 2, minWidth: "fit-content" }}>
+                <Image
+                  src={`/images/${
+                    isStoreRoute ? "stores-icon-active.svg" : "stores-icon.svg"
+                  }`}
+                  alt="shop-img"
+                  width={24}
+                  height={24}
+                  style={{ opacity: isStoreRoute ? 1 : 0.25 }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary="Stores"
+                sx={{
+                  color: isStoreRoute ? "primary.main" : "black",
+                  opacity: isStoreRoute ? 1 : 0.25,
+                }}
+              />
+            </ListItemButton>
+
+            <ListItemButton
+              selected={selectedPage === "author"}
+              onClick={() => handleSelectPage("author")}
+              sx={{ px: 4 }}
+            >
+              <ListItemIcon sx={{ pr: 2, minWidth: "fit-content" }}>
+                <Image
+                  src={`/images/${
+                    isAuthorRoute ? "author-icon-active.svg" : "author-icon.svg"
+                  }`}
+                  alt="shop-img"
+                  width={24}
+                  height={24}
+                  style={{ opacity: isAuthorRoute ? 1 : 0.25 }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary="Author"
+                sx={{
+                  color: isAuthorRoute ? "primary.main" : "black",
+                  opacity: isAuthorRoute ? 1 : 0.25,
+                }}
+              />
+            </ListItemButton>
+
+            <ListItemButton
+              selected={selectedPage === "books"}
+              onClick={() => handleSelectPage("books")}
+              sx={{ px: 4 }}
+            >
+              <ListItemIcon sx={{ pr: 2, minWidth: "fit-content" }}>
+                <Image
+                  src={`/images/${
+                    isBooksRoute ? "book-icon-active.svg" : "book-icon.svg"
+                  }`}
+                  alt="shop-img"
+                  width={24}
+                  height={24}
+                  style={{ opacity: isBooksRoute ? 1 : 0.25 }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary="Books"
+                sx={{
+                  color: isBooksRoute ? "primary.main" : "black",
+                  opacity: isBooksRoute ? 1 : 0.25,
+                }}
+              />
+            </ListItemButton>
+          </List>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" px={4} spacing={2}>
+          <LogoutIcon
+            sx={{
+              width: "24px",
+              height: "24px",
+              color: "black",
+              opacity: 0.25,
+            }}
+          />
+
+          <Box>
+            <Typography
+              marginX={1}
+              sx={{
+                color: "black",
+                opacity: 0.25,
+              }}
+            >
+              Log Out
+            </Typography>
+          </Box>
+        </Stack>
       </Stack>
     </Drawer>
   );

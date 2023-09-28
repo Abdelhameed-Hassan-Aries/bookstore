@@ -1,7 +1,5 @@
 import Meta from "./Meta";
 import React from "react";
-// import Header from './Header/Header';
-// import Footer from './Footer/Footer';
 import { Box } from "@mui/material";
 
 const Layout = ({ children }) => {
@@ -9,9 +7,7 @@ const Layout = ({ children }) => {
     <>
       <Meta />
       <main>
-        {/* <Header /> */}
-        <Box>{children}</Box>
-        {/* <Footer /> */}
+        <Box height="100%">{children}</Box>
       </main>
     </>
   );
