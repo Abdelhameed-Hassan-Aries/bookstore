@@ -40,7 +40,6 @@ const BookList = () => {
       field: "pages",
       headerName: "Pages",
       width: 300,
-      editable: true,
     },
     {
       field: "actions",

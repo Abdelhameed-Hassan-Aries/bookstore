@@ -37,13 +37,13 @@ const AuthorList = () => {
       field: "firstName",
       headerName: "First Name",
       width: 150,
-      editable: true, // Making this column editable
+      editable: true,
     },
     {
       field: "lastName",
       headerName: "Last Name",
       width: 150,
-      editable: true, // Making this column editable
+      editable: true,
     },
     {
       field: "actions",
