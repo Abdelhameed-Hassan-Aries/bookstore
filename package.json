@@ -16,7 +16,9 @@
     "@mui/joy": "^5.0.0-alpha.82",
     "@mui/lab": "^5.0.0-alpha.143",
     "@mui/material": "^5.14.8",
+    "@mui/x-data-grid": "^6.15.0",
     "@tanstack/react-query": "^4.29.12",
+    "babel-preset-es2015": "^6.24.1",
     "css-loader": "^6.8.1",
     "ky-universal": "^0.11.0",
     "next": "latest",
@@ -38,8 +40,6 @@
     "typescript": "latest"
   },
   "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
+    "fs": false
   }
 }

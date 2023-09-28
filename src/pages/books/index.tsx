@@ -7,6 +7,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Image from "next/image";
+import BookList from "@/components/Book/Book";
 
 const index = () => {
   return (
@@ -70,11 +71,7 @@ const index = () => {
         </Button>
       </Stack>
 
-      {/* <Stack direction="row" flexWrap="wrap" gap={3} alignItems="flex-start">
-        {ShopPageStoresData.map((data) => {
-          return <BookCard key={data.id} data={data} />;
-        })}
-      </Stack> */}
+      <BookList />
     </Stack>
   );
 };

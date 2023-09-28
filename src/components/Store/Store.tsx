@@ -1,20 +1,25 @@
-import React, { useState } from "react";
-import authors from "../../data/authors.json";
+import React from "react";
+import stores from "../../data/stores.json";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { Box } from "@mui/material";
 
-const AuthorList = ({}) => {
+const StoreList = ({}) => {
   const columns: GridColDef[] = [
-    { field: "id", headerName: "Author ID", width: 130 },
+    { field: "id", headerName: "Store ID", width: 130 },
     {
       field: "name",
       headerName: "Name",
       width: 300,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName} ${params.row.lastName}`,
+      valueGetter: (params: GridValueGetterParams) => `${params.row.name}`,
+    },
+    {
+      field: "address",
+      headerName: "Address",
+      width: 300,
+      valueGetter: (params: GridValueGetterParams) => `${params.row.address}`,
     },
     {
       field: "actions",
@@ -34,10 +39,12 @@ const AuthorList = ({}) => {
     },
   ];
 
-  const rows = authors.map((author) => ({
-    id: `#${author.id}`,
-    firstName: author.first_name,
-    lastName: author.last_name,
+  const rows = stores.map((store) => ({
+    id: `#${store.id}`,
+    name: store.name,
+    address: `${store.address_1 ?? ""} ${store.city}, ${store.state} ${
+      store.zip
+    } `,
   }));
 
   return (
@@ -53,4 +60,4 @@ const AuthorList = ({}) => {
   );
 };
 
-export default AuthorList;
+export default StoreList;

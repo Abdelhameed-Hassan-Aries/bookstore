@@ -1,20 +1,25 @@
-import React, { useState } from "react";
-import authors from "../../data/authors.json";
+import React from "react";
+import books from "../../data/books.json";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import { Box } from "@mui/material";
 
-const AuthorList = ({}) => {
+const BookList = ({}) => {
   const columns: GridColDef[] = [
-    { field: "id", headerName: "Author ID", width: 130 },
+    { field: "id", headerName: "Book ID", width: 130 },
     {
       field: "name",
       headerName: "Name",
       width: 300,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName} ${params.row.lastName}`,
+      valueGetter: (params: GridValueGetterParams) => `${params.row.name}`,
+    },
+    {
+      field: "pages",
+      headerName: "Pages",
+      width: 300,
+      valueGetter: (params: GridValueGetterParams) => `${params.row.pages}`,
     },
     {
       field: "actions",
@@ -34,10 +39,10 @@ const AuthorList = ({}) => {
     },
   ];
 
-  const rows = authors.map((author) => ({
+  const rows = books.map((author) => ({
     id: `#${author.id}`,
-    firstName: author.first_name,
-    lastName: author.last_name,
+    name: author.name,
+    pages: author.page_count,
   }));
 
   return (
@@ -53,4 +58,4 @@ const AuthorList = ({}) => {
   );
 };
 
-export default AuthorList;
+export default BookList;

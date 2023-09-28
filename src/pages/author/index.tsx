@@ -1,17 +1,13 @@
 import React from "react";
-import BookCard from "@/components/Cards/BookCard";
-import { AccountCircle } from "@mui/icons-material";
+import AuthorList from "@/components/Author/Author";
 import {
   Stack,
   Typography,
   Button,
   Input,
   InputAdornment,
-  Select,
-  MenuItem,
 } from "@mui/material";
 import Image from "next/image";
-import { ShopPageStoresData } from "@/components/Shop/Shop";
 
 const index = () => {
   return (
@@ -74,11 +70,7 @@ const index = () => {
         </Button>
       </Stack>
 
-      {/* <Stack direction="row" flexWrap="wrap" gap={3} alignItems="flex-start">
-        {ShopPageStoresData.map((data) => {
-          return <BookCard key={data.id} data={data} />;
-        })}
-      </Stack> */}
+      <AuthorList />
     </Stack>
   );
 };
