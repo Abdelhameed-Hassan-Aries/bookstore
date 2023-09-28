@@ -10,9 +10,15 @@ import {
 } from "@tanstack/react-query";
 import { useState } from "react";
 import WithAppWrapper from "../components/AppWrapper/AppWrapper";
+import { Poppins } from "next/font/google";
 
 const clientSideEmotionCache = createEmotionCache();
 const LayoutWithSidebar = WithAppWrapper(Layout);
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 function MyApp({
   Component,
@@ -28,7 +34,14 @@ function MyApp({
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <LayoutWithSidebar>
-              <Component {...pageProps} />
+              <>
+                <style jsx global>{`
+                  html {
+                    font-family: ${poppins.style.fontFamily};
+                  }
+                `}</style>
+                <Component {...pageProps} />
+              </>
             </LayoutWithSidebar>
           </Hydrate>
         </QueryClientProvider>
