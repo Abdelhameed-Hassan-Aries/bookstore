@@ -11,17 +11,16 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 }));
 
 const AppBarComponent = () => {
-  const {
-    asPath,
-    query: { tab },
-  } = useRouter();
-  const [selectedPage, setSelectedPage] = useState(asPath.split("/")[1]);
+  const { asPath } = useRouter();
 
-  const secondaryPath = asPath.split("/")[2];
+  const mainPath = asPath.split("/")[1];
 
-  useEffect(() => {
-    setSelectedPage(asPath.split("/")[1]);
-  }, [asPath]);
+  const breadcrumbFirstPath =
+    asPath.split("/")[1] === "shop" ? "shop" : "admin";
+
+  const breadcrumbSecondPath = asPath.split("/")[2];
+
+  const isAdminRoute = breadcrumbFirstPath === "admin";
 
   return (
     <Stack
@@ -33,20 +32,24 @@ const AppBarComponent = () => {
       <Stack justifyContent="space-between" direction="row">
         <Stack>
           <Typography variant="h5" fontWeight={500} color="#3E435D">
-            {capitalize(selectedPage)}
+            {capitalize(mainPath)}
           </Typography>
 
           <Stack direction="row" spacing={1}>
             <Typography variant="caption" fontWeight={300} color="#3E435D">
-              {capitalize(selectedPage)}
+              {capitalize(breadcrumbFirstPath)}
             </Typography>
-            {secondaryPath && (
+            {(breadcrumbSecondPath || isAdminRoute) && (
               <>
                 <Typography variant="caption" fontWeight={300} color="#3E435D">
                   {">"}
                 </Typography>
                 <Typography variant="caption" fontWeight={300} color="#3E435D">
-                  {capitalize(secondaryPath as string)}
+                  {capitalize(
+                    isAdminRoute
+                      ? (mainPath as string)
+                      : (breadcrumbSecondPath as string)
+                  )}
                 </Typography>
               </>
             )}

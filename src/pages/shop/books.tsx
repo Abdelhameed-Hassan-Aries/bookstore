@@ -1,5 +1,4 @@
 import BookCard from "@/components/Cards/BookCard";
-import { AccountCircle } from "@mui/icons-material";
 import {
   Stack,
   Typography,
@@ -26,6 +25,7 @@ const books = () => {
             id="input-with-icon-adornment"
             placeholder="Search"
             sx={{
+              width: "336px",
               backgroundColor: "white",
               py: "8px",
               px: "20px",
