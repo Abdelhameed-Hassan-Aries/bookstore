@@ -1,4 +1,5 @@
-import "../styles/styles.scss";
+// import "../styles/styles.scss";
+import "../styles/Home.module.css";
 import Layout from "../components/Layout";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme";

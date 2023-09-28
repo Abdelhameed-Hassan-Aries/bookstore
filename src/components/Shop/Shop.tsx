@@ -3,6 +3,7 @@ import React from "react";
 import BookCard from "../Cards/BookCard";
 import AuthorCard from "../Cards/AuthorCard";
 import { useRouter } from "next/router";
+import BookStoreModal from "../Modal/AddBookModal";
 
 export const ShopPageStoresData = [
   {

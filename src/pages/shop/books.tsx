@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import BookCard from "@/components/Cards/BookCard";
 import {
   Stack,
@@ -8,9 +9,10 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { ShopPageStoresData } from "@/components/Shop/Shop";
+import BookStoreModal from "@/components/Modal/AddBookModal";
 
 const books = () => {
   return (

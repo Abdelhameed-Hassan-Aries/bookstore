@@ -1,59 +1,56 @@
-Ovarc Bookstore Frontend
-This repository contains the frontend for the Ovarc bookstore, built as a part of the coding challenge for the Ovarc interview process.
+# Ovarc Bookstore Frontend
 
-Features
-A Shop page that lists books, showcasing their cover, title, author, and availability in various stores.
-An Authors page that lists authors with the ability to edit their names in-line, delete them, or add new authors through a modal.
-A Books page that presents a list of books, their number of pages, and their authors. Book titles are editable in-line.
-A Stores page that lists all the stores and each row acts as a CTA leading to the respective store's inventory page.
-A Store Inventory page where the admin can add more books to the store's inventory, view them in a list, or group them by author.
-Getting Started
-Prerequisites
-Node.js
-npm/Yarn
-Docker (Optional but recommended)
-Installation
-Clone this repository:
+Ovarc Bookstore Frontend is a React application built to manage a virtual bookstore.
 
-bash
-Copy code
-git clone https://github.com/your-username/ovarc-bookstore-frontend.git
-cd ovarc-bookstore-frontend
-Install dependencies:
+## Table of Contents
 
-bash
-Copy code
-npm install
-Running the App
-If you have Docker installed:
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Acknowledgments](#acknowledgments)
 
-Build the Docker image:
+## Features
 
-bash
-Copy code
-docker build -t ovarc-bookstore-frontend .
-Run using Docker:
+- **Shop Page**: Displays books with their cover, title, author, and availability across different stores.
+- **Authors Page**: Lists authors with features like in-line editing of their names, deletion, and addition of new authors through a modal.
+- **Books Page**: Showcases a list of books, their number of pages, and respective authors. Book titles can be edited in-line.
+- **Stores Page**: Enumerates all stores where each row serves as a CTA redirecting to the specific store's inventory page.
+- **Store Inventory Page**: Enables the admin to augment a store's inventory with new books, visualize them in a list or grouped by author.
 
-bash
-Copy code
-docker run -p 3000:3000 ovarc-bookstore-frontend
-The app should now be running at http://localhost:3000.
+## Getting Started
 
-Without Docker:
+### Prerequisites
 
-Run the app using:
+- Node.js
+- npm/Yarn
 
-bash
-Copy code
-npm start
-The app should be available at http://localhost:3000.
+### Installation
 
-Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+1. Clone this repository:
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+   ```bash
+   git clone https://github.com/Abdelhameed-Hassan-Aries/bookstore.git
+   cd bookstore
+   ```
 
-Acknowledgments
-Thanks to Ovarc for the opportunity to tackle this challenge.
-All contributors who participated in this project.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+1. Initiate the app:
+
+   ```bash
+   npm run dev
+   ```
+
+2. Visit the application at [http://localhost:3000](http://localhost:3000).
+
+## Acknowledgments
+
+- A heartfelt thank you to Ovarc for presenting this enriching challenge.
+- Gratitude to all the contributors for their invaluable input.

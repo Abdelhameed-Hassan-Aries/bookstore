@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState } from "react";
 import AuthorList from "@/components/Author/Author";
 import {
   Stack,
@@ -8,8 +9,19 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Image from "next/image";
+import AddAuthorModal from "@/components/Modal/AddAuthorModal";
 
 const index = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Stack width="100%" spacing={3}>
       <Stack direction="row" width="100%" justifyContent="space-between">
@@ -54,6 +66,7 @@ const index = () => {
         </Stack>
 
         <Button
+          onClick={handleOpenModal}
           sx={{
             color: "white",
             backgroundColor: "primary.main",
@@ -71,6 +84,10 @@ const index = () => {
       </Stack>
 
       <AuthorList />
+
+      {modalOpen && (
+        <AddAuthorModal open={modalOpen} onClose={handleCloseModal} />
+      )}
     </Stack>
   );
 };

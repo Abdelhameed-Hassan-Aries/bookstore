@@ -1,17 +1,27 @@
-import React from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState } from "react";
 import {
   Stack,
   Typography,
   Button,
   Input,
   InputAdornment,
-  Select,
-  MenuItem,
 } from "@mui/material";
 import Image from "next/image";
 import StoreList from "@/components/Store/Store";
+import AddStoreModal from "@/components/Modal/AddStoreModal";
 
 const index = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Stack width="100%" spacing={3}>
       <Stack direction="row" width="100%" justifyContent="space-between">
@@ -57,6 +67,7 @@ const index = () => {
         </Stack>
 
         <Button
+          onClick={handleOpenModal}
           sx={{
             color: "white",
             backgroundColor: "primary.main",
@@ -74,6 +85,10 @@ const index = () => {
       </Stack>
 
       <StoreList />
+
+      {modalOpen && (
+        <AddStoreModal open={modalOpen} onClose={handleCloseModal} />
+      )}
     </Stack>
   );
 };
