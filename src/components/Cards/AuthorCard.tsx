@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Button, Stack } from "@mui/material";
 import Image from "next/image";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const AuthorCard = ({ data }) => {
   const { name, publishBooks, image } = data;
