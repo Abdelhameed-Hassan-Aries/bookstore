@@ -1,40 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Ovarc Bookstore Frontend
+This repository contains the frontend for the Ovarc bookstore, built as a part of the coding challenge for the Ovarc interview process.
 
-## Getting Started
+Features
+A Shop page that lists books, showcasing their cover, title, author, and availability in various stores.
+An Authors page that lists authors with the ability to edit their names in-line, delete them, or add new authors through a modal.
+A Books page that presents a list of books, their number of pages, and their authors. Book titles are editable in-line.
+A Stores page that lists all the stores and each row acts as a CTA leading to the respective store's inventory page.
+A Store Inventory page where the admin can add more books to the store's inventory, view them in a list, or group them by author.
+Getting Started
+Prerequisites
+Node.js
+npm/Yarn
+Docker (Optional but recommended)
+Installation
+Clone this repository:
 
-First, run the development server:
+bash
+Copy code
+git clone https://github.com/your-username/ovarc-bookstore-frontend.git
+cd ovarc-bookstore-frontend
+Install dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+bash
+Copy code
+npm install
+Running the App
+If you have Docker installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build the Docker image:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+bash
+Copy code
+docker build -t ovarc-bookstore-frontend .
+Run using Docker:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+bash
+Copy code
+docker run -p 3000:3000 ovarc-bookstore-frontend
+The app should now be running at http://localhost:3000.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Without Docker:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Run the app using:
 
-## Learn More
+bash
+Copy code
+npm start
+The app should be available at http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Acknowledgments
+Thanks to Ovarc for the opportunity to tackle this challenge.
+All contributors who participated in this project.
